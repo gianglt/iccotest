@@ -7,44 +7,51 @@ export const todoListState = atom({
 
 
 // utility for creating unique Id
-let id = 0;
+let id = 1;
 function getId() {
   return id++;
 }
 
-export const addToDoItem = (inputValue) => {
-    setTodoList((oldTodoList) => [
-      ...oldTodoList,
-      {
-        id: getId(),
-        text: inputValue,
-        isComplete: false,
-      },
-    ]);
+export const addItemSelector = selector({
+    key: 'addItemSelector',
+    get: ({get}) => get(todoListState),
+    set: ({set, get}, inputValue) => {
+      const oldTodoList = get(todoListState);
+      const newTodoList = [
+        ...oldTodoList,
+        {
+          id: getId(),
+          text: inputValue,
+          isComplete: false,
+        },
+      ];
+      set(todoListState, newTodoList);
+    },
+  });
+
+
+
+// export const toggleItemCompletion = (index) => {
     
-};  
 
-export const toggleItemCompletion = (index) => {
-    
+//     const newList = replaceItemAtIndex(todoList, index, {
+//       ...item,
+//       isComplete: !item.isComplete,
+//     });
 
-    const newList = replaceItemAtIndex(todoList, index, {
-      ...item,
-      isComplete: !item.isComplete,
-    });
+//     setTodoList(newList);
+//   };
 
-    setTodoList(newList);
-  };
+// export  const deleteItem = (index) => {
+//     const newList = removeItemAtIndex(todoList, index);
 
-export  const deleteItem = (index) => {
-    const newList = removeItemAtIndex(todoList, index);
+//     setTodoList(newList);
+//   };
 
-    setTodoList(newList);
-  };
-
-function replaceItemAtIndex(arr, index, newValue) {
-    return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
-}
+// function replaceItemAtIndex(arr, index, newValue) {
+//     return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+// }
   
-function removeItemAtIndex(arr, index) {
-    return [...arr.slice(0, index), ...arr.slice(index + 1)];
-}  
+// function removeItemAtIndex(arr, index) {
+//     return [...arr.slice(0, index), ...arr.slice(index + 1)];
+// }  

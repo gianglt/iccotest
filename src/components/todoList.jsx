@@ -1,6 +1,6 @@
 import React , {useState} from 'react';
 import { atom, selector, useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
-import {todoListState} from '../recoil/todoState';
+import {todoListState, addItemSelector} from '../recoil/todoState';
 
 // utility for creating unique Id
 let id = 1;
@@ -13,17 +13,19 @@ function getId() {
 function TodoItemCreator() {
     const [inputValue, setInputValue] = useState('');
     const setTodoList = useSetRecoilState(todoListState);
+    const addTodoList = useSetRecoilState(addItemSelector);
   
     const addItem = () => {
-      setTodoList((oldTodoList) => [
-        ...oldTodoList,
-        {
-          id: getId(),
-          text: inputValue,
-          isComplete: false,
-        },
-      ]);
-      setInputValue('');
+        addTodoList(inputValue);
+    //   setTodoList((oldTodoList) => [
+    //     ...oldTodoList,
+    //     {
+    //       id: getId(),
+    //       text: inputValue,
+    //       isComplete: false,
+    //     },
+    //   ]);
+        setInputValue('');
     };
   
     const onChange = ({target: {value}}) => {
