@@ -13,17 +13,16 @@ import {TodoList} from '../components/todoList';
 const TodoListDemo = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  const returnHome = () => {
     navigate('/');
   }
-
 
   return (
     <Page className="page">
     <div className="section-container">
       <TodoList/> 
     </div>
-    <Button onClick={handleSubmit}>
+    <Button onClick={returnHome}>
       Home
     </Button>
 

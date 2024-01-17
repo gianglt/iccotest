@@ -1,7 +1,14 @@
 import React , {useState} from 'react';
 import { atom, selector, useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
 import {todoListState, addItemSelector} from '../recoil/todoState';
+import {
+    List,
+    Page,
+    Button,
+    Icon,useNavigate
+  } from 'zmp-ui';
 
+  
 // utility for creating unique Id
 let id = 1;
 
@@ -93,6 +100,9 @@ function TodoItem({item}) {
 export function TodoList() {
     const todoList = useRecoilValue(todoListState);
   
+    const showList = () => {
+        console.log('LIST', todoList);
+    }
     return (
       <>
         {/* <TodoListStats /> */}
@@ -102,6 +112,11 @@ export function TodoList() {
         {todoList.map((todoItem) => (
           <TodoItem key={todoItem.id} item={todoItem} />
         ))}
+
+        <Button onClick={showList}>
+        Show List
+        </Button>
+  
       </>
     );
   }
