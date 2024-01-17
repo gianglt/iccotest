@@ -6,6 +6,9 @@ import HomePage from '../pages';
 import About from '../pages/about';
 import Form from '../pages/form';
 import User from '../pages/user';
+import LearnRecoil from '../pages/LearnRecoil';
+import TodoListDemo from '../pages/TodoListDemo';
+
 
 
 const MyApp = () => {
@@ -17,8 +20,10 @@ const MyApp = () => {
           <AnimationRoutes>
             <Route path="/" element={<HomePage></HomePage>}></Route>
             <Route path="/about" element={<About></About>}></Route>
-          <Route path="/form" element={<Form></Form>}></Route>
-          <Route path="/user" element={<User></User>}></Route>
+            <Route path="/form" element={<Form></Form>}></Route>
+            <Route path="/user" element={<User></User>}></Route>
+            <Route path="/learnrecoil" element={<LearnRecoil/>}></Route>
+            <Route path="/todolistdemo" element={<TodoListDemo></TodoListDemo>}></Route>
           </AnimationRoutes>
         </ZMPRouter>
       </SnackbarProvider>
