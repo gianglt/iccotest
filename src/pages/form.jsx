@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { userState } from '../recoil/userState';
 
 const FormPage = () => {
-  const [user, setUser] = useRecoilState(userState)
+  const [user, setUser] = useRecoilState(userState);
   const [form, setForm] = React.useState({ ...user });
   const snackbar = useSnackbar()
 
